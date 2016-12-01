@@ -2,9 +2,9 @@
 @import "compass";
 
 $cell_height: 25px;
-$cell_width:(100px 300px 100px);
+$cell_width:(100px 300px 100px 200px);
 
-@mixin cell_style($bkclor:#ABCDEF){
+@mixin cell_style($bkclor:#ABCDEF,$cell_height:$cell_height){
 	height: $cell_height;
 	line-height: $cell_height;
 	border: 1px solid #000;
@@ -18,8 +18,15 @@ th{
 td{
 	@include cell_style(#EEE);
 }
-@for $i from 1 through 3 {
-	thead th:nth-of-type(#{$i}){
+
+thead th{
+	@include cell_style(#ABCDEF,30px);
+	font-size: 18px;
+	font-weight: bold;
+}
+
+@for $i from 1 through 4 {
+	tbody th:nth-of-type(#{$i}){
 		width: nth($cell_width,$i);
 	}
 }

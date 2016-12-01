@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>添加用户</title>
+</head>
+<body>
+	<h2>添加用户</h2>
+	<form action="/php/adduser.php" method="post">
+		<label for="username">用户名：<input id="username" name="username" type="username"></label>
+		<label for="password">密码：<input id="password" name="password" type="password"></label>
+		<label for="age">年龄：<input id="age" name="age" type="text"></label>
+		<button type="submit">提交</button>
+		<button type="reset">重置</button>
+	</form>
+	<!-- 引入jQuery -->
+	<script type="text/javascript" src="https://cdn.staticfile.org/jquery/1.11.1/jquery.min.js"></script>
+	<!-- 引入js -->
+	<script type="text/javascript" src="/js/adduser.js"></script>
+</body>
+</html>

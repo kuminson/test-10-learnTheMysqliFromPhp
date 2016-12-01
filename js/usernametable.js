@@ -1,15 +1,47 @@
 $(function(){
 	// 获取表格信息
 	addtable();
+	// 绑定删除按钮事件
+	$("body").on("click",".delete",function(){
+		var uid = parseInt($(this).closest("tr").children(".id").html());
+		$.ajax({
+			url: "/php/deleteuser.php",
+			type: "POST",
+			dataType: "json",
+			data: {id: uid},
+			success:function(data){
+				if(data.success != undefined){
+					alert("删除成功");
+					// 重新加载表格
+					addtable();
+				}else{
+					alert("数据库连接失败");
+				}
+			},
+			error:function(data){
+				alert("服务器链接失败");
+			}
+		});
+		
+	});
+	// 绑定更新按钮事件
+	$("body").on("click",".update",function(){
+		var uid = parseInt($(this).closest("tr").children(".id").html());
+		window.location.href= "/html/adduser.html?id="+uid;
+	});
 });
 
 // 加载表格数据
 function tableadddata(data){
 	for(var i=0; i<data.length; i++){
 		var label = '<tr>'
-						+'<td>'+data[i].id+'</td>'
+						+'<td class="id">'+data[i].id+'</td>'
 						+'<td>'+ data[i].username+'</td>'
 						+'<td>'+data[i].age+'</td>'
+						+'<td>'
+							+'<a href="#" class="delete">删除</a>|'
+							+'<a href="#" class="update">更新</a>'
+						+'</td>'
 					+'</tr>';
 		$("tbody").append(label);
 	}

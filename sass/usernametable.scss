@@ -1,0 +1,25 @@
+@import "compass/reset";
+@import "compass";
+
+$cell_height: 25px;
+$cell_width:(100px 300px 100px);
+
+@mixin cell_style($bkclor:#ABCDEF){
+	height: $cell_height;
+	line-height: $cell_height;
+	border: 1px solid #000;
+	text-align: center;
+	background-color: $bkclor;
+}
+
+th{
+	@include cell_style();
+}
+td{
+	@include cell_style(#EEE);
+}
+@for $i from 1 through 3 {
+	thead th:nth-of-type(#{$i}){
+		width: nth($cell_width,$i);
+	}
+}
